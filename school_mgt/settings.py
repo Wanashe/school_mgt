@@ -37,6 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #school_mgt apps
+    'accounts',
+    'core',
+    'academics',
+    'students',
+    'teachers',
+    'attendance',
+    'exams',
+    'fees',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +136,4 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+AUTH_USER_MODEL = 'accounts.User'
