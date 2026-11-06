@@ -1,0 +1,21 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block page_title %}Administrator Dashboard{% endblock %}
+
+{% block content %}
+<div class="card-grid">
+    <div class="card">
+        <h3>Total Students</h3>
+        <p>{{ total_students }}</p>
+    </div>
+    <div class="card">
+        <h3>Total Teachers</h3>
+        <p>{{ total_teachers }}</p>
+    </div>
+    <div class="card">
+        <h3>Active Academic Year</h3>
+        <p>{{ current_year.name|default:"Not Set" }}</p>
+    </div>
+</div>
+{% endblock %}
