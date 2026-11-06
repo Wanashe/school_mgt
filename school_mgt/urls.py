@@ -36,6 +36,8 @@ urlpatterns = [
     # Include app URL patterns (we will create these next)
     path('dashboard/', include('dashboard.urls')),
     path('academics/', include('academics.urls')),
+
+    path('accounts/', include('accounts.urls')),    
 ]
 #App URLs
 LOGIN_REDIRECT_URL = 'dashboard_redirect'

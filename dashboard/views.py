@@ -38,3 +38,14 @@ def parent_dashboard(request):
 @login_required
 def accountant_dashboard(request):
     return render(request, 'dashboard/accountant_dashboard.html')
+
+@login_required
+def admin_dashboard(request):
+    context = {
+        'total_students': Student.objects.count(),
+        'total_teachers': Teacher.objects.count(),
+        'total_subjects': Subject.objects.count(),
+        'total_grades': GradeLevel.objects.count(),
+        'active_year': AcademicYear.objects.filter(is_current=True).first(),
+    }
+    return render(request, 'dashboard/admin_dashboard.html', context)
