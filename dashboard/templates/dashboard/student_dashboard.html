@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+{% block page_title %}Student Portal{% endblock %}
+
+{% block content %}
+<div class="card-grid">
+    <div class="card">
+        <h3>My Grade Level</h3>
+        <p style="font-size: 18px; color: #2c3e50; margin-top: 5px;">
+            {{ request.user.student_profile.grade_level.name|default:"Not Assigned" }}
+        </p>
+    </div>
+    <div class="card">
+        <h3>Admission Number</h3>
+        <p style="font-size: 18px; color: #2c3e50; margin-top: 5px;">
+            {{ request.user.student_profile.admission_number|default:"N/A" }}
+        </p>
+    </div>
+    <div class="card">
+        <h3>Portal Status</h3>
+        <p style="font-size: 18px; color: #27ae60; margin-top: 5px;">Active</p>
+    </div>
+</div>
+
+<div style="margin-top: 25px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 10px; color: #2c3e50;">Welcome, {{ request.user.get_full_name|default:request.user.username }}!</h3>
+    <p style="color: #7f8c8d; line-height: 1.5;">
+        This is your student portal. Once your teachers and colleagues populate attendance, exams, and fee information, your records will appear right here.
+    </p>
+</div>
+{% endblock %}

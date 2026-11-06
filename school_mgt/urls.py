@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from accounts.views import dashboard_redirect_view
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    #Rediirect the root URL to the login page
+    path('', RedirectView.as_view(url='/login/', permanent=False)),
+
     path('admin/', admin.site.urls),
     
     # Built-in Auth URLs
@@ -31,6 +35,8 @@ urlpatterns = [
     
     # Include app URL patterns (we will create these next)
     path('dashboard/', include('dashboard.urls')),
+    path('academics/', include('academics.urls')),
 ]
+#App URLs
 LOGIN_REDIRECT_URL = 'dashboard_redirect'
 LOGOUT_REDIRECT_URL = 'login'

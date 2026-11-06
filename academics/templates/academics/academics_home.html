@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Academics Management{% endblock %}
+{% block page_title %}Academics Overview{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 25px;">
+    <a href="{% url 'add_academic_year' %}" style="background: #2ecc71; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin-right: 10px; display: inline-block;">+ Add Academic Year</a>
+    <a href="{% url 'add_term' %}" style="background: #e67e22; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin-right: 10px; display: inline-block;">+ Add Term</a>
+    <a href="{% url 'add_grade_level' %}" style="background: #3498db; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin-right: 10px; display: inline-block;">+ Add Grade Level</a>
+    <a href="{% url 'add_subject' %}" style="background: #9b59b6; color: white; padding: 10px 15px; text-decoration: none; border-radius: 4px; display: inline-block;">+ Add Subject</a>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 15px; color: #2c3e50;">Academic Years & Terms</h3>
+        <ul style="padding-left: 20px;">
+            {% for year in academic_years %}
+                <li style="margin-bottom: 10px;">
+                    <strong>{{ year.name }}</strong> {% if year.is_current %}(Current){% endif %}
+                    <ul style="margin-top: 5px;">
+                        {% for term in year.terms.all %}
+                            <li>{{ term.name }} {% if term.is_current %}(Active){% endif %}</li>
+                        {% empty %}
+                            <li style="color: #7f8c8d; font-size: 13px;">No terms added yet</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% empty %}
+                <li>No academic years added yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 15px; color: #2c3e50;">Grade Levels & Subjects</h3>
+        <div style="margin-bottom: 15px;">
+            <strong>Grades:</strong>
+            <ul style="padding-left: 20px; margin-top: 5px;">
+                {% for grade in grade_levels %}
+                    <li>{{ grade.name }}</li>
+                {% empty %}
+                    <li>No grade levels added yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <strong>Subjects:</strong>
+            <ul style="padding-left: 20px; margin-top: 5px;">
+                {% for subject in subjects %}
+                    <li>{{ subject.name }} ({{ subject.code }})</li>
+                {% empty %}
+                    <li>No subjects added yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
