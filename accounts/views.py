@@ -54,3 +54,10 @@ def register_teacher(request):
         form = AdminTeacherCreateForm()
     return render(request, 'academics/form_template.html', {'form': form, 'title': 'Register New Teacher'})
 
+@login_required
+def delete_user(request, user_id):
+    user_to_delete = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        user_to_delete.delete()
+        return redirect('user_management')
+    return render(request, 'accounts/confirm_delete.html', {'target_user': user_to_delete})

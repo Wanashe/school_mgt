@@ -18,6 +18,8 @@
                 <li style="margin-bottom: 10px;">
                     <strong>{{ student.user.get_full_name|default:student.user.username }}</strong><br>
                     <span style="color: #7f8c8d; font-size: 13px;">Adm: {{ student.admission_number }} | Grade: {{ student.grade_level.name|default:"Not Assigned" }}</span>
+
+                    <a href="{% url 'delete_user' student.user.id %}" style="color: #e74c3c; font-size: 13px; margin-left: 10px;">Delete</a>
                 </li>
             {% empty %}
                 <li style="color: #7f8c8d;">No students registered yet.</li>
@@ -33,6 +35,8 @@
                 <li style="margin-bottom: 10px;">
                     <strong>{{ teacher.user.get_full_name|default:teacher.user.username }}</strong><br>
                     <span style="color: #7f8c8d; font-size: 13px;">Employee ID: {{ teacher.employee_id }}</span>
+
+                    <a href="{% url 'delete_user' teacher.user.id %}" style="color: #e74c3c; font-size: 13px; margin-left: 10px;">Delete</a>
                 </li>
             {% empty %}
                 <li style="color: #7f8c8d;">No teachers registered yet.</li>
